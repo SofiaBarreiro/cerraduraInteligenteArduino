@@ -10,7 +10,19 @@
 LiquidCrystal lcd(4, 5, 6, 7, 8, 9); // PARA SIMULADOR
 int estado;
 
-int 
+byte coco[8] = {
+  0b00000,
+  0b01110,
+  0b11111,
+  0b10101,
+  0b11111,
+  0b11111,
+  0b11111,
+  0b10101
+};
+
+
+
 
 
 
@@ -37,13 +49,11 @@ void setup()
 {
   lcd.begin(16, 2);
   Serial.begin(9600);
+  lcd.createChar(0, coco);
+
   lcd.print("INGRESE CODIGO");
   analogWrite(A5, 0);
 
-  
-
-
-  
 }
 
 
@@ -54,7 +64,28 @@ void loop()
   lcd.setCursor(0, 0);
   estado = readButton();
   Serial.println(estado);
+
+  if (estado != 5) {
+    lcd.clear();
+
+    lcd.print(byte(0));
+
+  }
+
   delay(50);
 
 
 }
+
+//char imprimirFlecha(estado) {
+//
+//  if (estado == 0)
+//    RETURN ">";
+//  if (estado == 1)
+//    RETURN "";
+//  if (estado == 2)
+//    RETURN ">";
+//  if (estado == 3)
+//    RETURN ">";
+//
+//}
